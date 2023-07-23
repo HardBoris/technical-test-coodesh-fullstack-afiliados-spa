@@ -1,0 +1,41 @@
+body,
+header,
+main,
+footer,
+aside,
+section,
+form,
+input,
+div,
+h1,
+h2,
+p,
+span,
+button,
+ul {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+:root {
+  --primary-dark: hsl(240, 5%, 5%);
+  --primary-lighter-25: hsl(240, 25%, 90%);
+  --secondary: hsl(180, 60%, 50%);
+  --warning-75: hsl(60, 100%, 75%);
+  --error-75: hsl(0, 100%, 75%);
+  --success-75: hsl(120, 100%, 75%);
+}
+
+body {
+  color: var(--primary-dark);
+  background-color: var(--secondary);
+  font-size: calc(10px + 2vmin);
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  background: var(--primary-lighter-25);
+}
