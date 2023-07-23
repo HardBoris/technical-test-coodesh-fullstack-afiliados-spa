@@ -9,6 +9,10 @@ input,
 div,
 h1,
 h2,
+h3,
+h4,
+h5,
+h6,
 p,
 span,
 button,
@@ -21,10 +25,13 @@ ul {
 
 :root {
   --primary-dark: hsl(240, 5%, 5%);
+  --primary-75: hsl(240, 60%, 75%);
   --primary-lighter-25: hsl(240, 25%, 90%);
   --secondary: hsl(180, 60%, 50%);
   --warning-75: hsl(60, 100%, 75%);
+  --error-dark: hsl(0, 100%, 5%);
   --error-75: hsl(0, 100%, 75%);
+  --error-light: hsl(0, 100%, 95%);
   --success-75: hsl(120, 100%, 75%);
 }
 

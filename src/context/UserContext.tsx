@@ -18,7 +18,7 @@ interface AuthState {
 
 export interface SignInInfo {
   userName: string;
-  userPassword?: string;
+  userPassword: string;
 }
 
 interface UserContextData {
