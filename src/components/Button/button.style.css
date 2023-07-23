@@ -1,0 +1,37 @@
+.btn {
+  width: 90%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.neutro {
+  height: 60%;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: var(--primary-lighter-25);
+  border: none;
+  color: var(--primary-dark);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary);
+  /* color: var(--primary-light); */
+}
+
+.yes:hover {
+  background-color: var(--success-75);
+}
+
+.not:hover {
+  background-color: red;
+}
+
+.warning:hover {
+  background-color: yellow;
+}
