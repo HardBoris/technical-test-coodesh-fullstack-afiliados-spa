@@ -17,8 +17,9 @@ export interface ProductInfo {
 }
 
 interface ProductContextData {
-  product: Product;
+  thisProduct: Product;
   saveProduct: (info: ProductInfo) => void;
+  productFinder: (arg: string) => void;
 }
 
 export const ProductContext = createContext<ProductContextData>(
@@ -29,7 +30,7 @@ const useProduct = () => useContext(ProductContext);
 
 const ProductProvider = ({ children }: ProductProviderProps) => {
   const { token } = useAuth();
-  const [product, setProduct] = useState<Product>({} as Product);
+  const [thisProduct, setThisProduct] = useState<Product>({} as Product);
 
   const saveProduct = async ({ product }: ProductInfo) => {
     await api
@@ -38,12 +39,23 @@ const ProductProvider = ({ children }: ProductProviderProps) => {
         { product },
         { headers: { authorization: `Bearer ${token}` } }
       )
-      .then((response) => setProduct(response.data))
+      .then((response) => setThisProduct(response.data))
+      .catch((error) => console.log(error));
+  };
+
+  const productFinder = async (product: string) => {
+    await api
+      .get(`/products/${product}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((response) => setThisProduct(response.data))
       .catch((error) => console.log(error));
   };
 
   return (
-    <ProductContext.Provider value={{ product, saveProduct }}>
+    <ProductContext.Provider
+      value={{ thisProduct, saveProduct, productFinder }}
+    >
       {children}
     </ProductContext.Provider>
   );

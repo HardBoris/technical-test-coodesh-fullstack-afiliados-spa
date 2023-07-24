@@ -28,9 +28,11 @@ export interface SignUpInfo {
 interface UserContextData {
   user: User;
   token: string;
+  thisUser: User;
   signIn: (credentials: SignInInfo) => Promise<void>;
-  signUp: (info: SignUpInfo) => Promise<void>;
+  saveUser: (info: SignUpInfo) => Promise<void>;
   signOut: () => void;
+  userFinder: (arg: string) => void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -57,6 +59,8 @@ const UserProvider = ({ children }: UserProviderProps) => {
     return {} as AuthState;
   });
 
+  const [thisUser, setThisUser] = useState<User>({} as User);
+
   const signIn = async ({ userName, userPassword }: SignInInfo) => {
     await api
       .post("/login", { userName, userPassword })
@@ -71,7 +75,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
       });
   };
 
-  const signUp = async ({ userName }: SignUpInfo) => {
+  const saveUser = async ({ userName }: SignUpInfo) => {
     await api
       .post(
         "/users/register",
@@ -91,14 +95,25 @@ const UserProvider = ({ children }: UserProviderProps) => {
     setData({} as AuthState);
   };
 
+  const userFinder = async (user: string) => {
+    await api
+      .get(`/users/${user}`, {
+        headers: { authorization: `Bearer ${data.token}` },
+      })
+      .then((response) => setThisUser(response.data))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <UserContext.Provider
       value={{
         token: data.token,
         user: data.user,
+        thisUser,
         signIn,
-        signUp,
+        saveUser,
         signOut,
+        userFinder,
       }}
     >
       {children}

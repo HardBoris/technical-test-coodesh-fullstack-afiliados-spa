@@ -19,7 +19,7 @@ interface productObject {
 }
 
 export const Dashboard = () => {
-  const { signUp, signOut } = useAuth();
+  const { saveUser, signOut } = useAuth();
 
   const [file, setFile] = useState("");
 
@@ -43,13 +43,15 @@ export const Dashboard = () => {
     seller: item[4],
   }));
 
+  // const saveData = movementsArray.map((item) => ())
+
   const users = txtArray.map((item) => item[4]);
   const usersSet = new Set(users);
   const newUsers = Array.from(usersSet);
   const usersArray: userObject[] = newUsers.map((item) => ({ name: item }));
 
   const saveUsers = () => {
-    Promise.all(usersArray.map((item) => signUp({ userName: item.name })));
+    Promise.all(usersArray.map((item) => saveUser({ userName: item.name })));
   };
 
   const products = txtArray.map((item) => item[2]);
@@ -59,7 +61,7 @@ export const Dashboard = () => {
     product: item,
   }));
 
-  console.log(productArray);
+  console.log(movementsArray);
 
   const readFile = (e: any) => {
     const file = e.target.files[0];
