@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { localApi as api } from "../services/api";
-import { error } from "console";
 
 interface UserProviderProps {
   children: ReactNode;

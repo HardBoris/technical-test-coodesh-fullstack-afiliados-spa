@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { UserProvider } from "./UserContext";
 import { ProductProvider } from "./ProductContext";
+import { MovementProvider } from "./MovementContext";
 
 interface AppProviderProps {
   children: ReactNode;
@@ -8,6 +9,8 @@ interface AppProviderProps {
 
 export const AppProvider = ({ children }: AppProviderProps) => (
   <UserProvider>
-    <ProductProvider>{children}</ProductProvider>
+    <ProductProvider>
+      <MovementProvider>{children}</MovementProvider>
+    </ProductProvider>
   </UserProvider>
 );
