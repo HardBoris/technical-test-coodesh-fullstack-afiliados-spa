@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { localApi as api } from "../services/api";
+import { error } from "console";
 
 interface UserProviderProps {
   children: ReactNode;
@@ -21,10 +22,15 @@ export interface SignInInfo {
   userPassword: string;
 }
 
+export interface SignUpInfo {
+  userName: string;
+}
+
 interface UserContextData {
   user: User;
   token: string;
   signIn: (credentials: SignInInfo) => Promise<void>;
+  signUp: (info: SignUpInfo) => Promise<void>;
   signOut: () => void;
 }
 
@@ -66,6 +72,19 @@ const UserProvider = ({ children }: UserProviderProps) => {
       });
   };
 
+  const signUp = async ({ userName }: SignUpInfo) => {
+    await api
+      .post(
+        "/users/register",
+        { userName },
+        {
+          headers: { authorization: `Bearer ${data.token}` },
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
+
   const signOut = () => {
     localStorage.removeItem("@Coodesh:token");
     localStorage.removeItem("@Coodesh:user");
@@ -79,6 +98,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
         token: data.token,
         user: data.user,
         signIn,
+        signUp,
         signOut,
       }}
     >

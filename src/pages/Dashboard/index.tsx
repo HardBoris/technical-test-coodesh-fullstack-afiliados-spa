@@ -19,7 +19,7 @@ interface productObject {
 }
 
 export const Dashboard = () => {
-  const { signOut } = useAuth();
+  const { signUp, signOut } = useAuth();
 
   const [file, setFile] = useState("");
 
@@ -47,6 +47,10 @@ export const Dashboard = () => {
   const usersSet = new Set(users);
   const newUsers = Array.from(usersSet);
   const usersArray: userObject[] = newUsers.map((item) => ({ name: item }));
+
+  const saveUsers = () => {
+    Promise.all(usersArray.map((item) => signUp({ userName: item.name })));
+  };
 
   const products = txtArray.map((item) => item[2]);
   const productsSet = new Set(products);
@@ -80,6 +84,7 @@ export const Dashboard = () => {
           <h4>ingresa un archivo</h4>
         </div>
         <input type="file" name="file" onChange={readFile} />
+        <button onClick={() => saveUsers()}>guardar usuarios</button>
       </div>
       <button onClick={() => signOut()}>salir</button>
     </div>
