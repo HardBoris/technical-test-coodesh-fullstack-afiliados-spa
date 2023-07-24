@@ -2,12 +2,20 @@ import "./dahsboard.style.css";
 import { useAuth } from "../../context/UserContext";
 import { useState } from "react";
 
-interface MyObject {
+interface movementObject {
   type: string;
   date: string;
   product: string;
   price: string;
   seller: string;
+}
+
+interface userObject {
+  name: string;
+}
+
+interface productObject {
+  product: string;
 }
 
 export const Dashboard = () => {
@@ -27,14 +35,27 @@ export const Dashboard = () => {
       item.slice(66),
     ]);
 
-  const objectArray: MyObject[] = txtArray.map((item: string[]) => ({
+  const movementsArray: movementObject[] = txtArray.map((item: string[]) => ({
     type: item[0],
     date: item[1],
     product: item[2],
     price: item[3],
     seller: item[4],
   }));
-  console.log(objectArray);
+
+  const users = txtArray.map((item) => item[4]);
+  const usersSet = new Set(users);
+  const newUsers = Array.from(usersSet);
+  const usersArray: userObject[] = newUsers.map((item) => ({ name: item }));
+
+  const products = txtArray.map((item) => item[2]);
+  const productsSet = new Set(products);
+  const newProducts = Array.from(productsSet);
+  const productArray: productObject[] = newProducts.map((item) => ({
+    product: item,
+  }));
+
+  console.log(productArray);
 
   const readFile = (e: any) => {
     const file = e.target.files[0];
