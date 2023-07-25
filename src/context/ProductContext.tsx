@@ -14,6 +14,7 @@ export interface Product {
 
 export interface ProductInfo {
   product: string;
+  producer: string;
 }
 
 interface ProductContextData {
@@ -32,14 +33,14 @@ const ProductProvider = ({ children }: ProductProviderProps) => {
   const { token } = useAuth();
   const [thisProduct, setThisProduct] = useState<Product>({} as Product);
 
-  const saveProduct = async ({ product }: ProductInfo) => {
+  const saveProduct = async ({ product, producer }: ProductInfo) => {
     await api
       .post(
         "/products/register",
-        { product },
+        { product, producer },
         { headers: { authorization: `Bearer ${token}` } }
       )
-      .then((response) => setThisProduct(response.data))
+      .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
 

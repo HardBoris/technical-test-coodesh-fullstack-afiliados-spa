@@ -19,7 +19,7 @@ export interface MovementInfo {
   type: string;
   date: string;
   product: string;
-  price: number;
+  price: string;
   seller: string;
 }
 
@@ -54,7 +54,7 @@ const MovementProvider = ({ children }: MovementProviderProps) => {
         { type, date, product, price, seller },
         { headers: { authorization: `Bearer ${token}` } }
       )
-      .then((response) => setMovement(response.data))
+      .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
 
