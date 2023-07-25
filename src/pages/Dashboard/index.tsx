@@ -1,6 +1,6 @@
 import "./dahsboard.style.css";
 import { useAuth } from "../../context/UserContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMovement } from "../../context/MovementContext";
 import { useProduct } from "../../context/ProductContext";
 import { Button } from "../../components/Button";
@@ -25,7 +25,7 @@ interface productObject {
 export const Dashboard = () => {
   const { saveUser, signOut } = useAuth();
   const { saveProduct } = useProduct();
-  const { saveMovement } = useMovement();
+  const { saveMovement, moveList, dateFormatter } = useMovement();
   const [file, setFile] = useState("");
 
   const readFile = (e: any) => {
@@ -42,6 +42,12 @@ export const Dashboard = () => {
       console.log(fileReader.error);
     };
   };
+
+  /* useEffect(() => {
+    movementsList();
+  }, [readFile]); */
+
+  console.log(moveList);
 
   const arrayReducer = (parametro: string[][]) => {
     let array = [parametro[0]];
@@ -126,9 +132,15 @@ export const Dashboard = () => {
     setTimeout(movementsKeeper, 1000);
   };
 
+  const reformed =
+    moveList &&
+    moveList.map((item) => ({
+      ...item,
+      date: dateFormatter(item.date),
+    }));
+
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
       <div className="dashboard-sheath">
         <div className="file-form">
           <label htmlFor="file">Escolher Arquivo</label>
@@ -140,7 +152,41 @@ export const Dashboard = () => {
           </Button>
         </div>
       </div>
-      <div className="movements"></div>
+      <div className="movements">
+        <div className="move_head_wrapper">
+          <div className="move_head">
+            <div className="move_data">
+              <div className="move_id">id</div>
+              <div className="date">data</div>
+              <div className="move_type">tipo</div>
+              <div className="product">produto</div>
+              <div className="price">preço</div>
+              <div className="seller">vendedor</div>
+            </div>
+          </div>
+        </div>
+        <div className="movements_list">
+          {reformed &&
+            reformed.map((item, index) => (
+              <div
+                key={item.id}
+                className={
+                  Number(index) % 2 !== 0 ? "move_row" : "move_row alterno"
+                }
+              >
+                <div className="move_data">
+                  <div className="move_id">{item.id}</div>
+                  <div className="date">{item.date}</div>
+                  <div className="price">{item.price}</div>
+                  <div className="move_type">{item.type.kind}</div>
+                  <div className="product">{item.product.product}</div>
+                  <div className="seller">{item.seller.name}</div>
+                </div>
+                <div className="move_action"></div>
+              </div>
+            ))}
+        </div>
+      </div>
       <button onClick={() => signOut()}>salir</button>
     </div>
   );

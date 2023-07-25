@@ -28,6 +28,7 @@ ul {
   --primary-75: hsl(240, 60%, 75%);
   --primary-lighter-25: hsl(240, 25%, 90%);
   --secondary-lighter: hsl(180, 50%, 85%);
+  --secondary-lighter-25: hsl(180, 25%, 90%);
   --secondary: hsl(180, 60%, 50%);
   --warning-75: hsl(60, 100%, 75%);
   --error-dark: hsl(0, 100%, 5%);
