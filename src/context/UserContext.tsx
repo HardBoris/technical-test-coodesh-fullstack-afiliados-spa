@@ -6,9 +6,9 @@ interface UserProviderProps {
 }
 
 export interface User {
-  userId: string;
-  userName: string;
-  userPassword?: string;
+  id: string;
+  name: string;
+  password?: string;
 }
 
 interface AuthState {

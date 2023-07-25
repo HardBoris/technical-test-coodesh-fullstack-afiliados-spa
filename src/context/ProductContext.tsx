@@ -7,9 +7,9 @@ interface ProductProviderProps {
 }
 
 export interface Product {
-  productId: string;
+  id: string;
   product: string;
-  producer?: string;
+  producer: string;
 }
 
 export interface ProductInfo {

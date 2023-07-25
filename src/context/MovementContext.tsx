@@ -1,18 +1,31 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { localApi as api } from "../services/api";
-import { useAuth } from "./UserContext";
+import { User, useAuth } from "./UserContext";
+import { Product } from "./ProductContext";
 
 interface MovementProviderProps {
   children: ReactNode;
 }
 
-export interface Movement {
-  movementId: string;
+export interface MovementType {
+  id: string;
   type: string;
+  kind: string;
+}
+
+export interface Movement {
+  id: string;
+  type: MovementType;
   date: string;
-  product: string;
+  product: Product;
   price: number;
-  seller: string;
+  seller: User;
 }
 
 export interface MovementInfo {
@@ -28,6 +41,7 @@ interface MovementContextData {
   moveList: Movement[];
   saveMovement: (info: MovementInfo) => void;
   movementsList: () => void;
+  dateFormatter: (data: string) => string;
 }
 
 export const MovementContext = createContext<MovementContextData>(
@@ -65,9 +79,29 @@ const MovementProvider = ({ children }: MovementProviderProps) => {
       .catch((error) => console.log(error));
   };
 
+  useEffect(() => {
+    movementsList();
+  }, []);
+
+  const dateFormatter = (data: string) => {
+    const date = new Date(data);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    if (day < 10 && month < 10) {
+      return `0${day}/0${month}/${year}`;
+    } else if (day >= 10 && month < 10) {
+      return `${day}/0${month}/${year}`;
+    } else if (day < 10 && month >= 10) {
+      return `0${day}/${month}/${year}`;
+    } else {
+      return `${day}/${month}/${year}`;
+    }
+  };
+
   return (
     <MovementContext.Provider
-      value={{ movement, moveList, saveMovement, movementsList }}
+      value={{ movement, moveList, saveMovement, movementsList, dateFormatter }}
     >
       {children}
     </MovementContext.Provider>
