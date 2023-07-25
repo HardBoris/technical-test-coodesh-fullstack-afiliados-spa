@@ -5,13 +5,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: string;
 }
 
-export const Button = ({
-  children,
-  variant = "neutro",
-  ...rest
-}: ButtonProps) => (
+export const Button = ({ children, variant, ...rest }: ButtonProps) => (
   <div className="btn">
-    <button {...rest} className={variant}>
+    <button {...rest} className={variant ? `neutro ${variant}` : "neutro"}>
       {children}
     </button>
   </div>

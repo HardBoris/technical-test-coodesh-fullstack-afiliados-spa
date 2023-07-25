@@ -8,10 +8,48 @@
 }
 
 .dashboard-sheath {
-  width: 600px;
+  width: 400px;
   height: 300px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--primary-75);
+  border-radius: 0.8rem;
+}
+
+.file-form {
+  width: 70%;
+  height: 40%;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  width: 250px;
+  height: 60px;
+  background-color: var(--primary-lighter-25);
+  color: var(--primary-dark);
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+label:hover {
+  background-color: var(--primary-75);
+  border: 2px solid var(--primary-lighter-25);
+  color: var(--primary-lighter-25);
 }

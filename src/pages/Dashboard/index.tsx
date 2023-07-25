@@ -3,6 +3,7 @@ import { useAuth } from "../../context/UserContext";
 import { useState } from "react";
 import { useMovement } from "../../context/MovementContext";
 import { useProduct } from "../../context/ProductContext";
+import { Button } from "../../components/Button";
 
 interface movementObject {
   type: string;
@@ -129,12 +130,17 @@ export const Dashboard = () => {
     <div className="dashboard">
       <h1>Dashboard</h1>
       <div className="dashboard-sheath">
-        <div className="input-format">
-          <h4>ingresa un archivo</h4>
+        <div className="file-form">
+          <label htmlFor="file">Escolher Arquivo</label>
+          <input type="file" name="file" id="file" onChange={readFile} />
         </div>
-        <input type="file" name="file" onChange={readFile} />
-        <button onClick={() => handleData()}>guardar movements</button>
+        <div className="file-form">
+          <Button onClick={() => handleData()} variant="yes">
+            Guardar
+          </Button>
+        </div>
       </div>
+      <div className="movements"></div>
       <button onClick={() => signOut()}>salir</button>
     </div>
   );
