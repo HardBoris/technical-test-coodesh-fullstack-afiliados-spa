@@ -155,3 +155,49 @@ label:hover {
   justify-content: center;
   align-items: center;
 }
+
+.invisible {
+  display: none;
+}
+
+.footer_action {
+  width: 100%;
+  display: flex;
+}
+
+.tabs {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tab {
+  width: 400px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background-color: var(--primary-75);
+}
+
+.active {
+  border-left: 5px solid var(--primary-75);
+  border-top: 5px solid var(--primary-75);
+  border-right: 5px solid var(--primary-75);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.active:hover {
+  background-color: var(--secondary-75);
+}
+
+.exit_btn {
+  width: 20%;
+}

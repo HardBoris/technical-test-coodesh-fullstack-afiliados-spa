@@ -29,6 +29,9 @@ export const Dashboard = () => {
   const { saveProduct } = useProduct();
   const { saveMovement } = useMovement();
   const [file, setFile] = useState("");
+  const [show, setShow] = useState(0);
+
+  const activate = (n: number) => setShow(n);
 
   const readFile = (e: any) => {
     const file = e.target.files[0];
@@ -141,9 +144,35 @@ export const Dashboard = () => {
           </Button>
         </div>
       </div>
-      {/* <AllMovements /> */}
-      <MovementsByProduct />
-      <button onClick={() => signOut()}>salir</button>
+      <div className={show !== 0 ? "invisible" : ""}>
+        <AllMovements />
+      </div>
+      <div className={show !== 1 ? "invisible" : ""}>
+        <MovementsByProduct />
+      </div>
+      <div className="footer_action">
+        <div className="tabs">
+          <div
+            role="button"
+            className={show === 0 ? "tab active" : "tab"}
+            onClick={() => activate(0)}
+          >
+            Todos
+          </div>
+          <div
+            role="button"
+            className={show === 1 ? "tab active" : "tab"}
+            onClick={() => activate(1)}
+          >
+            Agrupados por Produto
+          </div>
+        </div>
+        <div className="exit_btn">
+          <Button onClick={() => signOut()} variant="warning">
+            salir
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

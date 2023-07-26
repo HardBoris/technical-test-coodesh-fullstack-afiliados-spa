@@ -29,9 +29,9 @@ button:hover {
 }
 
 .not:hover {
-  background-color: red;
+  background-color: var(--error-75);
 }
 
 .warning:hover {
-  background-color: yellow;
+  background-color: var(--warning-75);
 }
