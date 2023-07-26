@@ -29,10 +29,12 @@ interface UserContextData {
   user: User;
   token: string;
   thisUser: User;
+  usersList: User[];
   signIn: (credentials: SignInInfo) => Promise<void>;
   saveUser: (info: SignUpInfo) => Promise<void>;
   signOut: () => void;
   userFinder: (arg: string) => void;
+  usersLoader: () => void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -60,6 +62,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
   });
 
   const [thisUser, setThisUser] = useState<User>({} as User);
+  const [usersList, setUsersList] = useState<User[]>([]);
 
   const signIn = async ({ userName, userPassword }: SignInInfo) => {
     await api
@@ -104,16 +107,25 @@ const UserProvider = ({ children }: UserProviderProps) => {
       .catch((error) => console.log(error));
   };
 
+  const usersLoader = async () => {
+    await api
+      .get("/users", { headers: { authorization: `Bearer ${data.token}` } })
+      .then((response) => setUsersList(response.data))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <UserContext.Provider
       value={{
         token: data.token,
         user: data.user,
         thisUser,
+        usersList,
         signIn,
         saveUser,
         signOut,
         userFinder,
+        usersLoader,
       }}
     >
       {children}

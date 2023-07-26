@@ -6,6 +6,7 @@ import { useProduct } from "../../context/ProductContext";
 import { Button } from "../../components/Button";
 import { AllMovements } from "./all";
 import { MovementsByProduct } from "./MovementsByProduct/byProduct";
+import { MovementsByUser } from "./MovementsByUser/byUser";
 
 interface movementObject {
   type: string;
@@ -150,6 +151,9 @@ export const Dashboard = () => {
       <div className={show !== 1 ? "invisible" : ""}>
         <MovementsByProduct />
       </div>
+      <div className={show !== 2 ? "invisible" : ""}>
+        <MovementsByUser />
+      </div>
       <div className="footer_action">
         <div className="tabs">
           <div
@@ -165,6 +169,13 @@ export const Dashboard = () => {
             onClick={() => activate(1)}
           >
             Agrupados por Produto
+          </div>
+          <div
+            role="button"
+            className={show === 2 ? "tab active" : "tab"}
+            onClick={() => activate(2)}
+          >
+            Agrupados por User
           </div>
         </div>
         <div className="exit_btn">
