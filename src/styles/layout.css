@@ -35,7 +35,7 @@ footer {
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary);
+  background: var(--secondary-75);
 }
 
 input:-webkit-autofill {
