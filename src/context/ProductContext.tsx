@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { localApi as api } from "../services/api";
-import { useAuth } from "./UserContext";
+import { User, useAuth } from "./UserContext";
 
 interface ProductProviderProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface ProductProviderProps {
 export interface Product {
   id: string;
   product: string;
-  producer: string;
+  producer: User;
 }
 
 export interface ProductInfo {
@@ -19,8 +19,10 @@ export interface ProductInfo {
 
 interface ProductContextData {
   thisProduct: Product;
+  productList: Product[];
   saveProduct: (info: ProductInfo) => void;
   productFinder: (arg: string) => void;
+  productsLoader: () => void;
 }
 
 export const ProductContext = createContext<ProductContextData>(
@@ -32,6 +34,7 @@ const useProduct = () => useContext(ProductContext);
 const ProductProvider = ({ children }: ProductProviderProps) => {
   const { token } = useAuth();
   const [thisProduct, setThisProduct] = useState<Product>({} as Product);
+  const [productList, setProductList] = useState<Product[]>([]);
 
   const saveProduct = async ({ product, producer }: ProductInfo) => {
     await api
@@ -53,9 +56,22 @@ const ProductProvider = ({ children }: ProductProviderProps) => {
       .catch((error) => console.log(error));
   };
 
+  const productsLoader = async () => {
+    await api
+      .get("/products", { headers: { authorization: `Bearer ${token}` } })
+      .then((response) => setProductList(response.data))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <ProductContext.Provider
-      value={{ thisProduct, saveProduct, productFinder }}
+      value={{
+        thisProduct,
+        productList,
+        saveProduct,
+        productFinder,
+        productsLoader,
+      }}
     >
       {children}
     </ProductContext.Provider>
