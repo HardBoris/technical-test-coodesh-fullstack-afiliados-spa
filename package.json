@@ -1,7 +1,10 @@
 {
   "name": "fullstack-afiliados-spa",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "engines": {
+    "node": "16.18.1"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
     "@testing-library/jest-dom": "^5.14.1",

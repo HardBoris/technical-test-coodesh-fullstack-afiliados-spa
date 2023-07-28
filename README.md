@@ -6,7 +6,7 @@ This is a challenge by [Coodesh](https://coodesh.com/)
 
 Aplicação desenhada para providenciar uma entrada de arquivos de texto no formato `txt`, capturar, analisar, guardar e exibir a informação contida em dito arquivo.
 
-## Tecnologias ferramentas utilizadas
+## Tecnologias e ferramentas utilizadas
 
 - react
 - javascrip
@@ -31,11 +31,11 @@ Sendo assim, em resposta a esta pergunta, esta aplicação vem para agilizar tod
 
 ## Como funciona?
 
-Uma vez que o usuario acessa a aplicação, deve fazer login e automáticamente é direcionado à tela principal onde tem um butão para carregar o `arquivo.txt` e outro butão para processar a informação. Pronto!
+Uma vez que o usuario acessa a aplicação, deve fazer login e automáticamente é direcionado à tela principal onde tem um butão para carregar o `arquivo.txt` e outro butão para enviar a informação. Pronto!
 
 ### Login?
 
-Sim, mesmo que não era prioridade ter uma verificação de usuário, a aplicação inicia com um formulário de Login onde o usuário e senha por defeito é `admin`. Nas condições atuais, a aplicação, cadastra usuários sem cadastrar senha, porém, o único usuário autorizado para utilizar a aplicação é o `admin`.
+Sim, mesmo que não era prioridade ter uma verificação de usuário, a aplicação inicia com um formulário de Login onde o usuário e senha por defeito é `admin`. Nas condições atuais, a aplicação, cadastra usuários sem cadastrar senha somente via `arquivo.txt`, porém, o único usuário autorizado para utilizar a aplicação é o `admin`.
 
 ![login](public/fullstack-afiliados-login.png)
 
