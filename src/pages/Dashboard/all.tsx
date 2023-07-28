@@ -21,7 +21,6 @@ export const AllMovements = () => {
       <div className="move_head_wrapper">
         <div className="move_head">
           <div className="move_data">
-            <div className="move_id">id</div>
             <div className="date">data</div>
             <div className="move_type">tipo</div>
             <div className="product">produto</div>
@@ -40,7 +39,6 @@ export const AllMovements = () => {
               }
             >
               <div className="move_data">
-                <div className="move_id">{item.id}</div>
                 <div className="date">{item.date}</div>
                 <div className="move_type">{item.type.kind}</div>
                 <div className="product">{item.product.product}</div>

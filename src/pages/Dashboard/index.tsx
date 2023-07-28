@@ -1,6 +1,6 @@
 import "./dahsboard.style.css";
 import { useAuth } from "../../context/UserContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMovement } from "../../context/MovementContext";
 import { useProduct } from "../../context/ProductContext";
 import { Button } from "../../components/Button";
@@ -28,9 +28,13 @@ interface productObject {
 export const Dashboard = () => {
   const { saveUser, signOut } = useAuth();
   const { saveProduct } = useProduct();
-  const { saveMovement } = useMovement();
+  const { saveMovement, movementsList } = useMovement();
   const [file, setFile] = useState("");
   const [show, setShow] = useState(0);
+
+  useEffect(() => {
+    movementsList();
+  }, []);
 
   const activate = (n: number) => setShow(n);
 
@@ -139,9 +143,9 @@ export const Dashboard = () => {
           <label htmlFor="file">Escolher Arquivo</label>
           <input type="file" name="file" id="file" onChange={readFile} />
         </div>
-        <div className="file-form">
+        <div className="file-form sender">
           <Button onClick={() => handleData()} variant="yes">
-            Guardar
+            ENVIAR ARQUIVO
           </Button>
         </div>
       </div>
@@ -175,12 +179,12 @@ export const Dashboard = () => {
             className={show === 2 ? "tab active" : "tab"}
             onClick={() => activate(2)}
           >
-            Agrupados por User
+            Agrupados por Vendedor
           </div>
         </div>
         <div className="exit_btn">
           <Button onClick={() => signOut()} variant="warning">
-            salir
+            sair
           </Button>
         </div>
       </div>
