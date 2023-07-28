@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# FullStack Afiliados SPA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a challenge by [Coodesh](https://coodesh.com/)
 
-## Available Scripts
+## Descrição
 
-In the project directory, you can run:
+Aplicação desenhada para providenciar uma entrada de arquivos de texto no formato “.txt”, capturar, processar, guardar e exibir a informação contida em dito arquivo.
 
-### `yarn start`
+## Tecnologias ferramentas utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- react
+- javascrip
+- html
+- css
+- yarn
+- github
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Para que serve?
 
-### `yarn test`
+A empresa que solicitou esta aplicação teve um incremento no número de transações e estas transações precisam ser registradas e processadas. O ingreso manual de informação leva muito tempo e ainda aumenta o risco de informação omitida ou mal ingresada.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Esta aplicação captura toda esta informação contida no `arquivo.txt`:
 
-### `yarn build`
+- separa o texto por linhas
+- divide os dados de cada linha
+- cria objetos `{chave: valor}`
+- guarda a informação na entidade correspondente e
+- apresenta na tela toda essa informação de uma forma ordenada e compreensível, de tal forma que possa ser analisada e assimilada ao máximo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sendo assim, em resposta a esta pergunta, esta aplicação vem para agilizar todo esse procedimento, com todos os beneficios que significam o poupar tempo e recursos. Se faz necessário salientar o fato de que o `arquivo.txt` tem o layout predeterminado, o que significa que qualquer alteração em dito layout pode fazer com a aplicação devolva informação defeituosa.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Como funciona?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Uma vez que o usuario acessa a aplicação, deve fazer login e automáticamente é direcionado à tela principal onde tem um butão para carregar o `arquivo.txt` e outro butão para processar a informação. Pronto!
 
-### `yarn eject`
+### Login?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Sim, mesmo que não era prioridade ter uma verificação de usuário, a aplicação inicia com um formulário de Login onde o usuário e senha por defeito é `admin`. Nas condições atuais, a aplicação, cadastra usuários sem cadastrar senha, porém, o único usuário autorizado para utilizar a aplicação é o `admin`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![login](public/fullstack-afiliados-login.png)
+![all-movements](public/fullstack-afiliados-all.png)
+![by-product](public/fullstack-afiliados-by-product.png)
+![by-user](public/fullstack-afiliados-by-user.png)
