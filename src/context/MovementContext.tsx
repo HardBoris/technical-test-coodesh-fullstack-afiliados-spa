@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { localApi as api } from "../services/api";
+import { api } from "../services/api";
 import { User, useAuth } from "./UserContext";
 import { Product } from "./ProductContext";
 

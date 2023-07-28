@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { localApi as api } from "../services/api";
+import { api } from "../services/api";
 import { User, useAuth } from "./UserContext";
 
 interface ProductProviderProps {
