@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  client:
+    stdin_open: true
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/usr/app/node_modules"
+      - "./:/usr/app"
