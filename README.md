@@ -2,6 +2,8 @@
 
 This is a challenge by [Coodesh](https://coodesh.com/)
 
+Visita este projeto em: [coodesh-fullstack-afiliados-spa](https://coodesh-fullstack-afiliados-spa.onrender.com/)
+
 ## Descrição
 
 Aplicação desenhada para providenciar uma entrada de arquivos de texto no formato `txt`, capturar, analisar, guardar e exibir a informação contida em dito arquivo.
@@ -52,3 +54,6 @@ Ativando a aba `Agrupados por Vendedor` vai ter em destaque o nome de cada produ
 ![by-user](public/fullstack-afiliados-by-user.png)
 
 Em todas as abas a informação está ordenada pela data de forma ascedente. Sem importar qual seja a aba ativa, o usuário pode escolher e enviar outro `arquivo.txt`, igualmente pode sair da aplicação clicando no butão `SAIR`.
+
+Na proposta do desafio pede como requisito que a aplicação esteja dockerizada, eu tive muitas dificuldades e no final não consegui, porém, fiz deploy no render para poder mostrar o meu trabalho, aqui o link:
+[coodesh-fullstack-afiliados-spa](https://coodesh-fullstack-afiliados-spa.onrender.com/)
